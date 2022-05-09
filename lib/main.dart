@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:simple_to_do_list/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Simple todo list',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        backgroundColor: Colors.white12
       ),
-      home: const MyHomePage(title: 'Simple todo list'),
+      home: const HomePage(),
+      getPages: [
+        GetPage(name: '/', page: () => const HomePage()),
+      ],
     );
   }
 }
