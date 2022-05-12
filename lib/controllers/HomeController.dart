@@ -21,9 +21,10 @@ class HomeController extends GetxController {
           days: Random().nextInt(8),
           hours: Random().nextInt(24),
           minutes: Random().nextInt(60)));
-      ToDo _todo = ToDo('$i', '할일$i', 'detail$i', date, Random().nextBool());
+      ToDo _todo = ToDo('${i + 1}', '할일${i + 1}', 'detail${i + 1}', date, Random().nextBool());
       _list.add(_todo);
     }
+    _list.shuffle();
     return _list;
   }
 

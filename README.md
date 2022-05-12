@@ -17,8 +17,11 @@ flutter.dev - [https://www.flutter.dev](https://www.flutter.dev)
 ## 사용한 Flutter packages
 Flutter package는 [Pub.dev](https://pub.dev/)에 등록된 package 사용
 
-### 1. get(4.6.1)
-    URL에 parameter를 추가하여 상세보기 페이지로 접근할 수 있도록 하기 위해 사용
+### 1. get (^4.6.1)
+URL에 parameter를 추가하여 상세보기 페이지로 접근할 수 있도록 하기 위해 사용
+
+### 2. intl (^0.17.0)
+DateTime 형식을 yyyy.MM.dd 포멧의 String 형식으로 변환하기 위해 사용
 
 ## Getting Started
 

@@ -20,7 +20,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildToDoList() {
-    return ListView.builder(
+    return ListView.separated(
+        shrinkWrap: true,
+        separatorBuilder: (BuildContext _context, int index) => const Divider(),
         itemCount: _controller.toDoList.length,
         itemBuilder: (BuildContext _context, int index) {
           ToDo _value = _controller.toDoList[index];
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
             title: Text(_value.title),
             subtitle: Text(_value.detail),
             trailing: Text('datetime'),
-            onTap: (){
+            onTap: () {
               //ToDo: go detail page
             },
           );
@@ -47,10 +49,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Simple to do list'),
       ),
-      body: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 1440),
-          child: Obx(buildToDoList),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 1440),
+            child: Obx(buildToDoList),
+          ),
         ),
       ),
     );
