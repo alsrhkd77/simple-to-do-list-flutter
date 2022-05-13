@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ToDoDetailPage extends StatefulWidget {
-  const ToDoDetailPage({Key? key}) : super(key: key);
+class ToDoDetailViewPage extends StatefulWidget {
+  const ToDoDetailViewPage({Key? key}) : super(key: key);
 
   @override
-  State<ToDoDetailPage> createState() => _ToDoDetailPageState();
+  State<ToDoDetailViewPage> createState() => _ToDoDetailViewPageState();
 }
 
-class _ToDoDetailPageState extends State<ToDoDetailPage> {
+class _ToDoDetailViewPageState extends State<ToDoDetailViewPage> {
   @override
   void initState() {
     if(Get.parameters.containsKey('key')){
