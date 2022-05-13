@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             subtitle: Text(_value.detail),
             trailing: Text('datetime'),
             onTap: () {
-              //ToDo: go detail page
+              Get.toNamed('/detail_view', parameters: {'key':'asdf'});
             },
           );
         });

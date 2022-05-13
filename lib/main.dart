@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_to_do_list/pages/home_page.dart';
+import 'package:simple_to_do_list/pages/to_do_detail_view_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
       getPages: [
         GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/detail_view', page: () => const ToDoDetailViewPage()),
       ],
     );
   }
