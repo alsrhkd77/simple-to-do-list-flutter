@@ -1,14 +1,19 @@
+import 'dart:convert';
 import 'dart:math';
-
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:simple_to_do_list/models/to_do.dart';
 
 class HomeController extends GetxController {
   RxList<ToDo> toDoList = RxList.empty();
 
-  void getToDoList() {
+  Future<void> getToDoList() async {
     List<ToDo> _list = [];
-    _list = _randomData();
+    final url = Uri.parse("http://localhost:8080/todo/get-all-todo");
+    var response = await http.get(url);
+    List dataList = jsonDecode(response.body);
+    _list = dataList.map<ToDo>((e) => ToDo().fromData(e)).toList();
+    //_list = _randomData();
     toDoList = _list.obs;
     toDoList.refresh();
   }
@@ -21,7 +26,7 @@ class HomeController extends GetxController {
           days: Random().nextInt(8),
           hours: Random().nextInt(24),
           minutes: Random().nextInt(60)));
-      ToDo _todo = ToDo('${i + 1}', '할일${i + 1}', 'detail${i + 1}', date, Random().nextBool());
+      ToDo _todo = ToDo.init(i + 1, '할일${i + 1}', 'detail${i + 1}', date, Random().nextBool());
       _list.add(_todo);
     }
     _list.shuffle();

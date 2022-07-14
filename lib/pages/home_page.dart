@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             subtitle: Text(_value.detail),
             trailing: Text('datetime'),
             onTap: () {
-              Get.toNamed('/detail_view', parameters: {'key':'asdf'});
+              Get.toNamed('/detail', parameters: {'key':'asdf'});
             },
           );
         });
@@ -56,6 +56,12 @@ class _HomePageState extends State<HomePage> {
             child: Obx(buildToDoList),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_outlined),
+        onPressed: (){
+
+        },
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_to_do_list/pages/home_page.dart';
-import 'package:simple_to_do_list/pages/to_do_detail_view_page.dart';
+import 'package:simple_to_do_list/pages/to_do_detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,14 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Simple todo list',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: Colors.white12
-      ),
+      theme: ThemeData(useMaterial3: true),
       home: const HomePage(),
       getPages: [
         GetPage(name: '/', page: () => const HomePage()),
-        GetPage(name: '/detail_view', page: () => const ToDoDetailViewPage()),
+        GetPage(name: '/detail', page: () => const ToDoDetailPage()),
       ],
     );
   }

@@ -35,8 +35,9 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # custom import packages.
-  get: ^4.6.1
+  get: ^4.6.5
   intl: ^0.17.0
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
