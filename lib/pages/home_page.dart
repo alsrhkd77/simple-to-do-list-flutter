@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_to_do_list/common/date_time_formatter.dart';
 import 'package:simple_to_do_list/controllers/HomeController.dart';
 import 'package:simple_to_do_list/models/to_do.dart';
 
@@ -15,7 +16,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _controller.getToDoList();
     super.initState();
   }
 
@@ -35,9 +35,11 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text(_value.title),
             subtitle: Text(_value.detail),
-            trailing: Text('datetime'),
+            trailing: _value.deadline == null
+                ? null
+                : Text(DateTimeFormatter.dateTimeToString(_value.deadline!)),
             onTap: () {
-              Get.toNamed('/detail', parameters: {'key':'asdf'});
+              Get.toNamed('/detail', parameters: {'key': _value.id.toString()});
             },
           );
         });
@@ -47,20 +49,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Simple to do list'),
+        title: const Text('Simple to do list'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 1440),
-            child: Obx(buildToDoList),
-          ),
-        ),
+      body: FutureBuilder(
+        future: _controller.getToDoList(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const CircularProgressIndicator();
+          }
+          return SingleChildScrollView(
+            child: Center(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 1440),
+                child: Obx(buildToDoList),
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_outlined),
-        onPressed: (){
-
+        child: const Icon(Icons.add_outlined),
+        onPressed: () {
+          Get.toNamed('/new-todo');
         },
       ),
     );

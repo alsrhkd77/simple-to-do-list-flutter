@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_to_do_list/pages/create_to_do_page.dart';
 import 'package:simple_to_do_list/pages/home_page.dart';
 import 'package:simple_to_do_list/pages/to_do_detail_page.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const HomePage()),
         GetPage(name: '/detail', page: () => const ToDoDetailPage()),
+        GetPage(name: '/new-todo', page: () => const CreateToDoPage()),
       ],
     );
   }

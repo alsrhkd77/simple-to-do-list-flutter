@@ -7,15 +7,17 @@ import 'package:simple_to_do_list/models/to_do.dart';
 class HomeController extends GetxController {
   RxList<ToDo> toDoList = RxList.empty();
 
-  Future<void> getToDoList() async {
+  Future<bool> getToDoList() async {
     List<ToDo> _list = [];
     final url = Uri.parse("http://localhost:8080/todo/get-all-todo");
     var response = await http.get(url);
+    print(response.headers);
     List dataList = jsonDecode(response.body);
     _list = dataList.map<ToDo>((e) => ToDo().fromData(e)).toList();
     //_list = _randomData();
     toDoList = _list.obs;
     toDoList.refresh();
+    return true;
   }
 
   //더미데이터
@@ -36,5 +38,11 @@ class HomeController extends GetxController {
   void setCompletion(int index, bool value){
     toDoList[index].completion = value;
     toDoList.refresh();
+    final url = Uri.parse("http://localhost:8080/todo/set-completion");
+    http.post(url, body: {
+      "toDoId": toDoList[index].id.toString(),
+      "completion": toDoList[index].completion.toString(),
+    },
+    );
   }
 }
